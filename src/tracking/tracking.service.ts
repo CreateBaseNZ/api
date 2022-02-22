@@ -23,29 +23,29 @@ export class TrackingService {
   }
 
   async buildTracking(): Promise<void> {
-    const data = (await this.dataService.findAll())[0];
-    const rawData = data.content.split('\n');
-    rawData.pop();
-    for (let i = 0; i < rawData.length; i++) {
-      const parsedData = JSON.parse(rawData[i]);
-      if (parsedData.event === '$identify') continue;
-      const createTracking: any = {
-        profile: new mongoose.Types.ObjectId(parsedData.properties.distinct_id),
-        event: parsedData.event,
+    const data = await this.dataService.getData();
+    const trackingDataArray: Array<any> = [];
+    for (let i = 0; i < data.length; i++) {
+      const trackingData: any = {
+        profile: new mongoose.Types.ObjectId(data[i].properties.distinct_id),
+        event: data[i].event,
         timestamp: moment('1970-01-01')
           .tz('Pacific/Auckland')
-          .add(parsedData.properties.time, 's')
+          .add(data[i].properties.time, 's')
           .toDate(),
+        duration: data[i].properties.duration,
+        project: data[i].properties.project,
+        subsystem: data[i].properties.subsystem,
       };
-      if (parsedData.properties.licenses.length) {
-        createTracking.license = parsedData.properties.licenses[0];
-        createTracking.licenses = parsedData.properties.licenses;
+      if (data[i].properties.licenses.length) {
+        trackingData.license = data[i].properties.licenses[0];
+        trackingData.licenses = data[i].properties.licenses;
       }
-      if (parsedData.properties.schools.length) {
-        createTracking.group = parsedData.properties.schools[0];
-        createTracking.groups = parsedData.properties.schools;
+      if (data[i].properties.schools.length) {
+        trackingData.group = data[i].properties.schools[0];
+        trackingData.groups = data[i].properties.schools;
       }
-      await this.create(createTracking);
+      trackingDataArray[i] = trackingData;
     }
     return;
   }

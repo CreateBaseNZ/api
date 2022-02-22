@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { TrackingModule } from './tracking/tracking.module';
 import { DataModule } from './data/data.module';
 import { DataController } from './data/data.controller';
+import { LicenseModule } from './license/license.module';
 
 @Module({
   imports: [
@@ -13,6 +14,7 @@ import { DataController } from './data/data.controller';
     MongooseModule.forRoot(process.env.MONGODB_URL),
     TrackingModule,
     DataModule,
+    LicenseModule,
   ],
   controllers: [AppController],
   providers: [AppService],
