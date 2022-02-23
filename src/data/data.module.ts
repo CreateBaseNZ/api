@@ -5,7 +5,10 @@ import { DataSchema } from './data.schema';
 import { DataService } from './data.service';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'Data', schema: DataSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: 'Data', schema: DataSchema }], 'prod'),
+    MongooseModule.forFeature([{ name: 'Data', schema: DataSchema }], 'dev'),
+  ],
   controllers: [DataController],
   providers: [DataService],
   exports: [DataService],
