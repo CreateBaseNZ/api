@@ -5,6 +5,9 @@ export type DataDocument = Data & mongoose.Document;
 
 @Schema()
 export class Data {
+  @Prop()
+  _id: mongoose.Schema.Types.ObjectId;
+  
   @Prop({ required: true })
   content: string;
 

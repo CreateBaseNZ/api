@@ -5,6 +5,9 @@ export type TrackingDocument = Tracking & mongoose.Document;
 
 @Schema()
 export class Tracking {
+  @Prop()
+  _id: mongoose.Schema.Types.ObjectId;
+
   @Prop({ required: true })
   profile: mongoose.Schema.Types.ObjectId;
 

@@ -6,6 +6,9 @@ export type ClassDocument = Class & mongoose.Document;
 @Schema()
 export class Class {
   @Prop()
+  _id: mongoose.Schema.Types.ObjectId;
+  
+  @Prop()
   group: mongoose.Schema.Types.ObjectId;
 
   @Prop()

@@ -6,6 +6,9 @@ export type LicenseDocument = License & mongoose.Document;
 @Schema()
 export class License {
   @Prop()
+  _id: mongoose.Schema.Types.ObjectId;
+
+  @Prop()
   group: mongoose.Schema.Types.ObjectId;
 
   @Prop()
