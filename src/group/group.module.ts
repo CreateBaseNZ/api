@@ -6,7 +6,10 @@ import { GroupService } from './group.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'Group', schema: GroupSchema }], 'prod'),
+    MongooseModule.forFeature(
+      [{ name: 'Group', schema: GroupSchema }],
+      'default',
+    ),
   ],
   controllers: [GroupController],
   providers: [GroupService],

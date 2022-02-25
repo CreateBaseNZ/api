@@ -8,7 +8,7 @@ import { LicenseService } from './license.service';
   imports: [
     MongooseModule.forFeature(
       [{ name: 'License', schema: LicenseSchema }],
-      'prod',
+      'default',
     ),
   ],
   controllers: [LicenseController],

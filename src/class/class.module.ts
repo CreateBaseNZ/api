@@ -6,7 +6,10 @@ import { ClassService } from './class.service';
 
 @Module({
   imports: [
-    MongooseModule.forFeature([{ name: 'Class', schema: ClassSchema }], 'prod'),
+    MongooseModule.forFeature(
+      [{ name: 'Class', schema: ClassSchema }],
+      'default',
+    ),
   ],
   controllers: [ClassController],
   providers: [ClassService],
