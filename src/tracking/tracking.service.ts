@@ -78,13 +78,14 @@ export class TrackingService {
         license: undefined,
         classes: undefined,
         event: data[i].event,
-        timestamp: moment('1970-01-01')
-          .tz('Pacific/Auckland')
-          .add(data[i].properties.time, 's')
-          .toDate(),
+        timestamp: Number(data[i].properties['$mp_api_timestamp_ms']) * 1000,
         duration: data[i].properties.duration,
         project: data[i].properties.project,
         subsystem: data[i].properties.subsystem,
+        start: data[i].properties['start']
+          ? data[i].properties['start']
+          : undefined,
+        end: data[i].properties['end'] ? data[i].properties['end'] : undefined,
       };
       [
         trackingData.groups,

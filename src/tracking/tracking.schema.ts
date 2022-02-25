@@ -30,7 +30,13 @@ export class Tracking {
   event: string;
 
   @Prop({ required: true })
-  timestamp: string;
+  timestamp: number;
+
+  @Prop()
+  start: number;
+
+  @Prop()
+  end: number;
 
   @Prop()
   duration: number;
