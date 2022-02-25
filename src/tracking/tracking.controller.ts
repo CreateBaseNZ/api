@@ -11,12 +11,6 @@ interface HttpReturn {
 export class TrackingController {
   constructor(private readonly trackingService: TrackingService) {}
 
-  @Post('build')
-  async build(): Promise<void> {
-    await this.trackingService.buildTracking();
-    return;
-  }
-
   @Post('create')
   async create(@Body() body: any): Promise<HttpReturn> {
     let data = body.input;

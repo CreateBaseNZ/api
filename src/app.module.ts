@@ -4,7 +4,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TrackingModule } from './tracking/tracking.module';
-import { DataModule } from './data/data.module';
 import { LicenseModule } from './license/license.module';
 import { GroupModule } from './group/group.module';
 import { ClassModule } from './class/class.module';
@@ -18,7 +17,6 @@ import { ClassModule } from './class/class.module';
     }),
     MongooseModule.forRoot(process.env.DEV_DATABASE, { connectionName: 'dev' }),
     TrackingModule,
-    DataModule,
     LicenseModule,
     GroupModule,
     ClassModule,
