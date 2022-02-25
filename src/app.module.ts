@@ -12,10 +12,10 @@ import { ClassModule } from './class/class.module';
   imports: [
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.DATABASE, { connectionName: 'default' }),
-    MongooseModule.forRoot(process.env.PROD_DATABASE, {
+    MongooseModule.forRoot(process.env.DATABASE_PROD, {
       connectionName: 'prod',
     }),
-    MongooseModule.forRoot(process.env.DEV_DATABASE, { connectionName: 'dev' }),
+    MongooseModule.forRoot(process.env.DATABASE_DEV, { connectionName: 'dev' }),
     TrackingModule,
     LicenseModule,
     GroupModule,
