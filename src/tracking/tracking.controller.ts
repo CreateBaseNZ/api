@@ -1,5 +1,4 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import * as mongoose from 'mongoose';
 import { TrackingService } from './tracking.service';
 
 interface HttpReturn {

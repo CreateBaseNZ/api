@@ -7,7 +7,7 @@ export type GroupDocument = Group & mongoose.Document;
 export class Group {
   @Prop()
   _id: mongoose.Schema.Types.ObjectId;
-  
+
   @Prop()
   number: number;
 

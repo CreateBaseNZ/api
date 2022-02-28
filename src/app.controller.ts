@@ -1,4 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { AppService } from './app.service';
 
 @Controller()
@@ -8,6 +9,15 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @Get('set-cookie')
+  setCookie(@Res() res: Response): Response {
+    return res.cookie('test', 'Hello World!', {
+      domain: '.createbase.co.nz',
+      expires: new Date(Date.now() + Math.pow(9, 10)),
+      secure: true,
+    });
   }
 
   @Post('convert-date')
