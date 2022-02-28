@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Res, Req } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { AppService } from './app.service';
+import * as CryptoJS from 'crypto-js';
 
 @Controller()
 export class AppController {
@@ -14,7 +15,7 @@ export class AppController {
   @Get('set-cookie')
   setCookie(@Res() res: Response): Response {
     return res
-      .cookie('test', 'Hello World!', {
+      .cookie('test', CryptoJS.AES.encrypt('Hello World', 'a_secret'), {
         domain: '.createbase.co.nz',
         expires: new Date(Date.now() + Math.pow(9, 10)),
         secure: true,
@@ -25,7 +26,9 @@ export class AppController {
 
   @Get('get-cookie')
   getCookie(@Req() req: Request, @Res() res: Response): Response {
-    return res.status(200).send(req.cookies['test']);
+    return res
+      .status(200)
+      .send(CryptoJS.AES.decrypt(req.cookies['test'], 'a_secret'));
   }
 
   @Post('convert-date')
