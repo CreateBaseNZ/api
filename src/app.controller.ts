@@ -12,8 +12,8 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('set-cookie')
-  setCookie(@Res() res: Response): Response {
+  @Get('set-cookie-example')
+  setCookieExample(@Res() res: Response): Response {
     return res
       .cookie(
         'test',
@@ -28,8 +28,8 @@ export class AppController {
       .send('Cookie Set');
   }
 
-  @Get('get-cookie')
-  getCookie(@Req() req: Request, @Res() res: Response): Response {
+  @Get('get-cookie-example')
+  getCookieExample(@Req() req: Request, @Res() res: Response): Response {
     return res
       .status(200)
       .send(
